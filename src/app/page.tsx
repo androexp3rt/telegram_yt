@@ -16,8 +16,8 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [vidId]);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <iframe id="ytplayer" width="640" height="360" src={`https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&loop=1`}>
+    <main className="flex w-screen min-h-screen flex-col items-center justify-center p-24">
+      <iframe className="h-48 md:h-videomd lg:h-videolg w-80 md:w-videomd lg:w-videolg" id="ytplayer" src={`https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&loop=1`}>
       </iframe>
     </main>
   );
