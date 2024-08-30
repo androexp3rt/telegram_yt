@@ -4,9 +4,10 @@ import { useState,useEffect } from "react";
 export default function Home() {
   const [vidId,setVidId] = useState("JVMFHP8CxZQ");
   const [currentIdIndex, setCurrentIdIndex] = useState(0);
-  const [ids,setIds] = useState(["JVMFHP8CxZQ","xGIIQOFwUNc","uP79KgEYGN0"]);
-  const [time,setTime] = useState([840000,780000,3060000])
-  useEffect(() => {
+  const [ids,setIds] = useState(["JVMFHP8CxZQ","xGIIQOFwUNc","uP79KgEYGN0","sUoy0om-BvY"]);
+  const [time,setTime] = useState([840000,780000,3060000,2280000]);
+  // const [time,setTime] = useState([60000,60000,60000]);
+  function update() {
     const intervalId = setInterval(() => {
       // Calculate the index of the next item
       const nextIndex = (currentIdIndex + 1) % ids.length; // Circularly access elements
@@ -14,11 +15,15 @@ export default function Home() {
       setVidId(ids[nextIndex]);
     }, time[currentIdIndex]);
     return () => clearInterval(intervalId);
-  }, [vidId]);
+  }
+  useEffect(() => {
+    update();
+  },[vidId]);
   return (
     <main className="flex w-screen min-h-screen flex-col items-center justify-center p-24">
-      <iframe className="h-48 md:h-videomd lg:h-videolg w-80 md:w-videomd lg:w-videolg" id="ytplayer" src={`https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1&loop=1`}>
+      <iframe className="h-48 md:h-videomd lg:h-videolg w-80 md:w-videomd lg:w-videolg" id="ytplayer" src={`https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1`}>
       </iframe>
+      {/* <button className="bg-white p-2 mt-5 rounded-lg" onClick={update}>Next</button> */}
     </main>
   );
 }
